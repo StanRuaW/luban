@@ -167,23 +167,7 @@
 	</bean>	
 	
 	
-	<bean name="H1">
-		<var name="y2" type="H2"/>
-		<var name="y3" type="int"/>
-	</bean>
-	<bean name="H2">
-		<var name="z2" type="int"/>
-		<var name="z3" type="int"/>
-	</bean>
 	
-	<bean name="MultiRowTitle">
-		<var name="id" type="int"/>
-		<var name="name" type="string"/>
-		<var name="x1" type="H1"/>
-		<var name="x2" type="list,H2" multi_rows="1"/>
-		<var name="x3" type="array,H2" multi_rows="1"/>
-	</bean>
-	<table name="TbMultiRowTitle" value="MultiRowTitle" input="test/multi_level_title.xlsx"/>
 	
 	
 	<bean name="TestNull">
