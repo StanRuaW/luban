@@ -183,6 +183,17 @@ public sealed partial class {{name}}
     public {{cs_define_type value_type}} Get({{cs_define_type key_type}} key) => _dataMap[key];
     public {{cs_define_type value_type}} this[{{cs_define_type key_type}} key] => _dataMap[key];
 
+    public void ForeachCfg(Func<{{cs_define_type value_type}}, bool> callback)
+    {
+        foreach(var v in _dataList)
+        {
+            if(!callback(v))
+            {
+                break;
+            }
+        }
+    }
+
     public void Resolve(Dictionary<string, object> _tables)
     {
         foreach(var v in _dataList)
@@ -225,17 +236,6 @@ public sealed partial class {{name}}
     {{~end~}}
 
     partial void OnResolveFinish(Dictionary<string, object> _tables);
-
-    public void ForeachCfg(Func<key_type, bool> callback)
-    {
-        foreach(var v in _dataList)
-        {
-            if(!callback(v))
-            {
-                break;
-            }
-        }
-    }
 }
 
 }
@@ -276,7 +276,7 @@ public sealed class {{name}}
     {
         var tables = new System.Collections.Generic.Dictionary<string, object>();
         {{~for table in tables ~}}
-        {{table.name}} = new {{table.full_name}}(loader(""{{table.output_data_file}}"")); 
+        {{table.name}} = new {{table.full_name}}(loader(""{{table.output_data_file}}.bin"")); 
         tables.Add(""{{table.full_name}}"", {{table.name}});
         {{~end~}}
 
