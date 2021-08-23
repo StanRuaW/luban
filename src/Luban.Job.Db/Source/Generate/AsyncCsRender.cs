@@ -45,7 +45,7 @@ namespace Luban.Job.Db.Generate
     is_abstract_type = x.is_abstract_type
     readonly_name = ""IReadOnly"" + name
 }}
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{x.namespace_with_top_module}}
 {
@@ -67,7 +67,7 @@ public interface {{readonly_name}} {{if parent_def_type}}: IReadOnly{{x.parent_d
 /// {{x.comment}}
 /// </summary>
 {{~end~}}
-public {{x.cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{x.parent}} {{else}} Bright.Transaction.TxnBeanBase {{end}}, {{readonly_name}}
+public {{x.cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{x.parent}} {{else}} Plugin.Bright.Transaction.TxnBeanBase {{end}}, {{readonly_name}}
 {
     {{~ for field in fields~}}
     {{if is_abstract_type}}protected{{else}}private{{end}} {{db_cs_define_type field.ctype}} {{field.internal_name}};
@@ -84,7 +84,7 @@ public {{x.cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{x.paren
         {{ctype = field.ctype}}
         {{~if has_setter ctype~}}
 
-    private sealed class {{field.log_type}} :  Bright.Transaction.FieldLogger<{{name}}, {{db_cs_define_type ctype}}>
+    private sealed class {{field.log_type}} :  Plugin.Bright.Transaction.FieldLogger<{{name}}, {{db_cs_define_type ctype}}>
     {
         public {{field.log_type}}({{name}} self, {{db_cs_define_type ctype}} value) : base(self, value) {  }
 
@@ -112,7 +112,7 @@ public {{x.cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{x.paren
         {
             if (this.IsManaged)
             {
-                var txn = Bright.Transaction.TransactionContext.ThreadStaticCtx;
+                var txn = Plugin.Bright.Transaction.TransactionContext.ThreadStaticCtx;
                 if (txn == null) return {{field.internal_name}};
                 var log = ({{field.log_type}})txn.GetField(this.GetObjectId() + {{field.id}});
                 return log != null ? log.Value : {{field.internal_name}};
@@ -129,7 +129,7 @@ public {{x.cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{x.paren
             {{~end~}}
             if (this.IsManaged)
             {
-                var txn = Bright.Transaction.TransactionContext.ThreadStaticCtx;
+                var txn = Plugin.Bright.Transaction.TransactionContext.ThreadStaticCtx;
                 txn.PutField(this.GetObjectId() + {{field.id}}, new {{field.log_type}}(this, value));
                 {{~if ctype.need_set_children_root}}
                 value?.InitRoot(GetRoot());
@@ -163,7 +163,7 @@ public {{x.cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{x.paren
         /// {{field.comment}}
         /// </summary>
 {{~end~}}
-        {{db_cs_readonly_define_type ctype}} {{readonly_name}}.{{field.cs_style_name}} => new Bright.Transaction.Collections.PReadOnlyMap<{{db_cs_readonly_define_type ctype.key_type}}, {{db_cs_readonly_define_type ctype.value_type}}, {{db_cs_define_type ctype.value_type}}>({{field.internal_name}});
+        {{db_cs_readonly_define_type ctype}} {{readonly_name}}.{{field.cs_style_name}} => new Plugin.Bright.Transaction.Collections.PReadOnlyMap<{{db_cs_readonly_define_type ctype.key_type}}, {{db_cs_readonly_define_type ctype.value_type}}, {{db_cs_define_type ctype.value_type}}>({{field.internal_name}});
         {{~end~}}
     {{~end~}}
 
@@ -218,7 +218,7 @@ public {{x.cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{x.paren
     public override int GetTypeId() => ID;
     {{~end~}}
 
-    protected override void InitChildrenRoot(Bright.Storage.TKey root)
+    protected override void InitChildrenRoot(Plugin.Bright.Storage.TKey root)
     {
         {{~ for field in hierarchy_fields~}}
         {{~if need_set_children_root field.ctype~}}
@@ -321,14 +321,14 @@ public sealed class {{name}}
         public string RenderTables(string name, string module, List<DefTable> tables)
         {
             var template = t_stubRender ??= Template.Parse(@"
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{namespace}}
 {
    
 public static class {{name}}
 {
-    public static System.Collections.Generic.List<Bright.Transaction.TxnTable> TableList { get; } = new System.Collections.Generic.List<Bright.Transaction.TxnTable>
+    public static System.Collections.Generic.List<Plugin.Bright.Transaction.TxnTable> TableList { get; } = new System.Collections.Generic.List<Bright.Transaction.TxnTable>
     {
     {{~ for table in tables~}}
         {{table.full_name}}.Table,

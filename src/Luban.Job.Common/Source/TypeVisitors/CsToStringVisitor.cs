@@ -18,22 +18,22 @@ namespace Luban.Job.Common.TypeVisitors
 
         public override string Accept(TArray type, string fieldName)
         {
-            return $"Bright.Common.StringUtil.CollectionToString({fieldName})";
+            return $"Plugin.Bright.Common.StringUtil.CollectionToString({fieldName})";
         }
 
         public override string Accept(TList type, string fieldName)
         {
-            return $"Bright.Common.StringUtil.CollectionToString({fieldName})";
+            return $"Plugin.Bright.Common.StringUtil.CollectionToString({fieldName})";
         }
 
         public override string Accept(TSet type, string fieldName)
         {
-            return $"Bright.Common.StringUtil.CollectionToString({fieldName})";
+            return $"Plugin.Bright.Common.StringUtil.CollectionToString({fieldName})";
         }
 
         public override string Accept(TMap type, string fieldName)
         {
-            return $"Bright.Common.StringUtil.CollectionToString({fieldName})";
+            return $"Plugin.Bright.Common.StringUtil.CollectionToString({fieldName})";
         }
     }
 }

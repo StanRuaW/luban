@@ -14,62 +14,62 @@ namespace Luban.Job.Db.TypeVisitors
 
         public string Accept(TBool type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeBool";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeBool";
         }
 
         public string Accept(TByte type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeByte";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeByte";
         }
 
         public string Accept(TShort type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeShort";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeShort";
         }
 
         public string Accept(TFshort type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeFshort";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeFshort";
         }
 
         public string Accept(TInt type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeInt";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeInt";
         }
 
         public string Accept(TFint type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeFint";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeFint";
         }
 
         public string Accept(TLong type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeLong";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeLong";
         }
 
         public string Accept(TFlong type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeFlong";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeFlong";
         }
 
         public string Accept(TFloat type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeFloat";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeFloat";
         }
 
         public string Accept(TDouble type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeDouble";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeDouble";
         }
 
         public string Accept(TEnum type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeInt";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeInt";
         }
 
         public string Accept(TString type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeString";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeString";
         }
 
         public string Accept(TBytes type)
@@ -91,7 +91,7 @@ namespace Luban.Job.Db.TypeVisitors
             }
             else
             {
-                return $"Bright.Common.SerializationUtil.DeserializeBean<{typeName}>";
+                return $"Plugin.Bright.Common.SerializationUtil.DeserializeBean<{typeName}>";
             }
         }
 
@@ -117,22 +117,22 @@ namespace Luban.Job.Db.TypeVisitors
 
         public string Accept(TVector2 type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeVector2";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeVector2";
         }
 
         public string Accept(TVector3 type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeVector3";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeVector3";
         }
 
         public string Accept(TVector4 type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeVector4";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeVector4";
         }
 
         public string Accept(TDateTime type)
         {
-            return "Bright.Common.SerializationUtil.DeserializeInt";
+            return "Plugin.Bright.Common.SerializationUtil.DeserializeInt";
         }
     }
 }

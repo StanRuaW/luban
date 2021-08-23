@@ -25,7 +25,7 @@ namespace Luban.Job.Cfg.Generate
         public override string Render(DefBean b)
         {
             var template = t_beanRender ??= Template.Parse(@"
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{namespace}}
 {
@@ -37,7 +37,7 @@ public {{cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{parent}} 
 
     }
 
-    public {{name}}(Bright.Common.NotNullInitialization _) {{if parent_def_type}} : base(_) {{end}}
+    public {{name}}(Plugin.Bright.Common.NotNullInitialization _) {{if parent_def_type}} : base(_) {{end}}
     {
         {{~for field in fields ~}}
         {{~if field.ctype.need_init~}}
@@ -127,12 +127,12 @@ public {{cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{parent}} 
         public override string Render(DefTable p)
         {
             var template = t_tableRender ??= Template.Parse(@"
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{namespace}}
 {
    
-public sealed class {{name}} : Bright.Net.Protocol
+public sealed class {{name}} : Plugin.Bright.Net.Protocol
 {
     {{~for field in fields ~}}
      public {{field.ctype.cs_define_type}} {{field.cs_style_name}};
@@ -140,7 +140,7 @@ public sealed class {{name}} : Bright.Net.Protocol
     public {{name}}()
     {
     }
-    public {{name}}(Bright.Common.NotNullInitialization _)
+    public {{name}}(Plugin.Bright.Common.NotNullInitialization _)
     {
         {{~for field in fields ~}}
         {{~if field.ctype.need_init~}}
@@ -202,14 +202,14 @@ public sealed class {{name}} : Bright.Net.Protocol
         public override string RenderService(string name, string module, List<DefTable> tables)
         {
             var template = t_stubRender ??= Template.Parse(@"
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{namespace}}
 {
    
 public static class {{name}}
 {
-    public static System.Collections.Generic.Dictionary<int, Bright.Net.IProtocolFactory> Factories { get; } = new System.Collections.Generic.Dictionary<int, Bright.Net.IProtocolFactory>
+    public static System.Collections.Generic.Dictionary<int, Plugin.Bright.Net.IProtocolFactory> Factories { get; } = new System.Collections.Generic.Dictionary<int, Bright.Net.IProtocolFactory>
     {
     {{~for proto in protos ~}}
         [{{proto.full_name}}.ID] = () => new {{proto.full_name}}(false),

@@ -13,7 +13,7 @@ namespace Luban.Job.Cfg.Generate
         public override string Render(DefBean b)
         {
             var template = t_beanRender ??= Template.Parse(@"
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 using System.Collections.Generic;
 {{
     name = x.name
@@ -31,7 +31,7 @@ namespace {{x.namespace_with_top_module}}
 /// {{x.comment}}
 /// </summary>
 {{~end~}}
-public {{x.cs_class_modifier}} partial class {{name}} : {{if parent_def_type}} {{x.parent}} {{else}} Bright.Config.BeanBase {{end}}
+public {{x.cs_class_modifier}} partial class {{name}} : {{if parent_def_type}} {{x.parent}} {{else}} Plugin.Bright.Config.BeanBase {{end}}
 {
     public {{name}}(ByteBuf _buf) {{if parent_def_type}} : base(_buf) {{end}}
     {
@@ -134,7 +134,7 @@ public {{x.cs_class_modifier}} partial class {{name}} : {{if parent_def_type}} {
         public override string Render(DefTable p)
         {
             var template = t_tableRender ??= Template.Parse(@"
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 using System.Collections.Generic;
 using System;
 
@@ -250,7 +250,7 @@ public sealed partial class {{name}}
         public override string RenderService(string name, string module, List<DefTable> tables)
         {
             var template = t_serviceRender ??= Template.Parse(@"
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 {{
     name = x.name

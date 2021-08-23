@@ -48,7 +48,7 @@ namespace Luban.Job.Proto.Generate
     fields = x.fields
     hierarchy_fields = x.hierarchy_fields
 }}
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{x.namespace_with_top_module}}
 {
@@ -58,7 +58,7 @@ namespace {{x.namespace_with_top_module}}
     /// {{x.comment}}
     /// </summary>
 {{~end~}}
-    public  {{if is_value_type}}struct{{else}}{{x.cs_class_modifier}} class{{end}} {{name}} : {{if parent_def_type}} {{parent}} {{else}} Bright.Serialization.BeanBase {{end}}
+    public  {{if is_value_type}}struct{{else}}{{x.cs_class_modifier}} class{{end}} {{name}} : {{if parent_def_type}} {{parent}} {{else}} Plugin.Bright.Serialization.BeanBase {{end}}
     {
         {{~if !is_value_type~}}
         public {{name}}()
@@ -66,7 +66,7 @@ namespace {{x.namespace_with_top_module}}
         }
         {{~end~}}
 
-        public {{name}}(Bright.Common.NotNullInitialization _) {{if parent_def_type}} : base(_) {{end}}
+        public {{name}}(Plugin.Bright.Common.NotNullInitialization _) {{if parent_def_type}} : base(_) {{end}}
         {
             {{~ for field in fields ~}}
                 {{~if cs_need_init field.ctype~}}
@@ -172,7 +172,7 @@ namespace {{x.namespace_with_top_module}}
     parent = x.parent
     fields = x.fields
 }}
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{x.namespace_with_top_module}}
 {
@@ -181,7 +181,7 @@ namespace {{x.namespace_with_top_module}}
     /// {{x.comment}}
     /// </summary>
 {{~end~}}
-    public sealed class {{name}} : Bright.Net.Codecs.Protocol
+    public sealed class {{name}} : Plugin.Bright.Net.Codecs.Protocol
     {
         {{~ for field in fields ~}}
 {{~if field.comment != '' ~}}
@@ -197,7 +197,7 @@ namespace {{x.namespace_with_top_module}}
         {
         }
 
-        public {{name}}(Bright.Common.NotNullInitialization _)
+        public {{name}}(Plugin.Bright.Common.NotNullInitialization _)
         {
             {{~ for field in fields ~}}
                 {{~if cs_need_init field.ctype~}}
@@ -267,7 +267,7 @@ namespace {{x.namespace_with_top_module}}
     targ_type = x.targ_type
     tres_type = x.tres_type
 }}
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{x.namespace_with_top_module}}
 {
@@ -277,7 +277,7 @@ namespace {{x.namespace_with_top_module}}
     /// {{x.comment}}
     /// </summary>
 {{~end~}}
-    public sealed class {{name}} : Bright.Net.Codecs.Rpc<{{cs_define_type targ_type}}, {{cs_define_type tres_type}}>
+    public sealed class {{name}} : Plugin.Bright.Net.Codecs.Rpc<{{cs_define_type targ_type}}, {{cs_define_type tres_type}}>
     {
         public {{name}}()
         {
@@ -318,13 +318,13 @@ namespace {{x.namespace_with_top_module}}
         public string RenderStubs(string name, string module, List<DefTypeBase> protos, List<DefTypeBase> rpcs)
         {
             var template = t_stubRender ??= Template.Parse(@"
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{namespace}}
 {
     public static class {{name}}
     {
-        public static System.Collections.Generic.Dictionary<int, Bright.Net.Codecs.ProtocolCreator> Factories { get; } = new System.Collections.Generic.Dictionary<int, Bright.Net.Codecs.ProtocolCreator>
+        public static System.Collections.Generic.Dictionary<int, Plugin.Bright.Net.Codecs.ProtocolCreator> Factories { get; } = new System.Collections.Generic.Dictionary<int, Bright.Net.Codecs.ProtocolCreator>
         {
         {{~ for proto in protos ~}}
             [{{proto.full_name}}.ID] = () => new {{proto.full_name}}(),
