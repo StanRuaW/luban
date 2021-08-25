@@ -1,0 +1,12 @@
+D:\AshFrame\luban\src\Luban.Common\bin\Debug\net5.0\Luban.Common.deps.json
+D:\AshFrame\luban\src\Luban.Common\bin\Debug\net5.0\Luban.Common.dll
+D:\AshFrame\luban\src\Luban.Common\bin\Debug\net5.0\ref\Luban.Common.dll
+D:\AshFrame\luban\src\Luban.Common\bin\Debug\net5.0\Luban.Common.pdb
+D:\AshFrame\luban\src\Luban.Common\obj\Debug\net5.0\Luban.Common.csproj.AssemblyReference.cache
+D:\AshFrame\luban\src\Luban.Common\obj\Debug\net5.0\Luban.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\AshFrame\luban\src\Luban.Common\obj\Debug\net5.0\Luban.Common.AssemblyInfoInputs.cache
+D:\AshFrame\luban\src\Luban.Common\obj\Debug\net5.0\Luban.Common.AssemblyInfo.cs
+D:\AshFrame\luban\src\Luban.Common\obj\Debug\net5.0\Luban.Common.csproj.CoreCompileInputs.cache
+D:\AshFrame\luban\src\Luban.Common\obj\Debug\net5.0\Luban.Common.dll
+D:\AshFrame\luban\src\Luban.Common\obj\Debug\net5.0\ref\Luban.Common.dll
+D:\AshFrame\luban\src\Luban.Common\obj\Debug\net5.0\Luban.Common.pdb

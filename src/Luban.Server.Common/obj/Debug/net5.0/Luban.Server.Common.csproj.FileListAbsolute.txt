@@ -1,0 +1,15 @@
+D:\AshFrame\luban\src\Luban.Server.Common\bin\Debug\net5.0\Luban.Server.Common.deps.json
+D:\AshFrame\luban\src\Luban.Server.Common\bin\Debug\net5.0\Luban.Server.Common.dll
+D:\AshFrame\luban\src\Luban.Server.Common\bin\Debug\net5.0\ref\Luban.Server.Common.dll
+D:\AshFrame\luban\src\Luban.Server.Common\bin\Debug\net5.0\Luban.Server.Common.pdb
+D:\AshFrame\luban\src\Luban.Server.Common\bin\Debug\net5.0\Luban.Common.dll
+D:\AshFrame\luban\src\Luban.Server.Common\bin\Debug\net5.0\Luban.Common.pdb
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\Luban.Server.Common.csproj.AssemblyReference.cache
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\Luban.Server.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\Luban.Server.Common.AssemblyInfoInputs.cache
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\Luban.Server.Common.AssemblyInfo.cs
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\Luban.Server.Common.csproj.CoreCompileInputs.cache
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\Luban.Server.Common.csproj.CopyComplete
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\Luban.Server.Common.dll
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\ref\Luban.Server.Common.dll
+D:\AshFrame\luban\src\Luban.Server.Common\obj\Debug\net5.0\Luban.Server.Common.pdb
