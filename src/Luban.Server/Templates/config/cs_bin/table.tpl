@@ -1,5 +1,6 @@
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 using System.Collections.Generic;
+using System;
 
 namespace {{x.namespace_with_top_module}}
 {
@@ -59,6 +60,17 @@ public sealed class {{name}}
         foreach(var v in _dataList)
         {
             v.TranslateText(translator);
+        }
+    }
+
+    public void ForeachCfg(Func<{{cs_define_type value_type}}, bool> callback)
+    {
+        foreach(var v in _dataList)
+        {
+            if(!callback(v))
+            {
+                break;
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 using System.Text.Json;
 {{
     name = x.name

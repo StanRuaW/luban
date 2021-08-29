@@ -8,7 +8,7 @@
     fields = x.fields
     hierarchy_fields = x.hierarchy_fields
 }}
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{x.namespace_with_top_module}}
 {
@@ -18,7 +18,7 @@ namespace {{x.namespace_with_top_module}}
     /// {{x.comment}}
     /// </summary>
 {{~end~}}
-    public  {{if is_value_type}}struct{{else}}{{x.cs_class_modifier}} class{{end}} {{name}} : {{if parent_def_type}} {{parent}} {{else}} Bright.Serialization.BeanBase {{end}}
+    public  {{if is_value_type}}struct{{else}}{{x.cs_class_modifier}} class{{end}} {{name}} : {{if parent_def_type}} {{parent}} {{else}} Plugin.Bright.Serialization.BeanBase {{end}}
     {
         {{~if !is_value_type~}}
         public {{name}}()
@@ -26,7 +26,7 @@ namespace {{x.namespace_with_top_module}}
         }
         {{~end~}}
 
-        public {{name}}(Bright.Common.NotNullInitialization _) {{if parent_def_type}} : base(_) {{end}}
+        public {{name}}(Plugin.Bright.Common.NotNullInitialization _) {{if parent_def_type}} : base(_) {{end}}
         {
             {{~ for field in fields ~}}
                 {{~if cs_need_init field.ctype~}}

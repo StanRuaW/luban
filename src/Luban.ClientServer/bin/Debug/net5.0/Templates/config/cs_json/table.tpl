@@ -1,4 +1,4 @@
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 using System.Collections.Generic;
 using System.Text.Json;
 

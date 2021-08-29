@@ -10,7 +10,7 @@ namespace Luban.Job.Common.Utils
     {
         public const string PuertsByteBufImports = @"
 import {Bright} from 'csharp'
-import ByteBuf = Bright.Serialization.ByteBuf";
+import ByteBuf = Plugin.Bright.Serialization.ByteBuf";
 
         public static string GetByteBufImports(string path, string package)
         {
@@ -58,8 +58,8 @@ export interface ISerializable {
 
 export abstract class BeanBase implements ISerializable {
     abstract getTypeId(): number
-    abstract serialize(buf: Bright.Serialization.ByteBuf): void
-    abstract deserialize(buf: Bright.Serialization.ByteBuf): void
+    abstract serialize(buf: Plugin.Bright.Serialization.ByteBuf): void
+    abstract deserialize(buf: Plugin.Bright.Serialization.ByteBuf): void
 }
 ";
 

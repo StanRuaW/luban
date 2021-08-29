@@ -4,7 +4,7 @@
     parent = x.parent
     fields = x.fields
 }}
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{x.namespace_with_top_module}}
 {
@@ -13,7 +13,7 @@ namespace {{x.namespace_with_top_module}}
     /// {{x.comment}}
     /// </summary>
 {{~end~}}
-    public sealed class {{name}} : Bright.Net.Codecs.Protocol
+    public sealed class {{name}} : Plugin.Bright.Net.Codecs.Protocol
     {
         {{~ for field in fields ~}}
 {{~if field.comment != '' ~}}
@@ -29,7 +29,7 @@ namespace {{x.namespace_with_top_module}}
         {
         }
 
-        public {{name}}(Bright.Common.NotNullInitialization _)
+        public {{name}}(Plugin.Bright.Common.NotNullInitialization _)
         {
             {{~ for field in fields ~}}
                 {{~if cs_need_init field.ctype~}}

@@ -1,10 +1,10 @@
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{namespace}}
 {
     public static class {{name}}
     {
-        public static System.Collections.Generic.Dictionary<int, Bright.Net.Codecs.ProtocolCreator> Factories { get; } = new System.Collections.Generic.Dictionary<int, Bright.Net.Codecs.ProtocolCreator>
+        public static System.Collections.Generic.Dictionary<int, Plugin.Bright.Net.Codecs.ProtocolCreator> Factories { get; } = new System.Collections.Generic.Dictionary<int, Plugin.Bright.Net.Codecs.ProtocolCreator>
         {
         {{~ for proto in protos ~}}
             [{{proto.full_name}}.ID] = () => new {{proto.full_name}}(),

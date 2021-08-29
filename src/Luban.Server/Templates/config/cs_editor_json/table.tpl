@@ -1,9 +1,9 @@
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{namespace}}
 {
    
-public sealed class {{name}} : Bright.Net.Protocol
+public sealed class {{name}} : Plugin.Bright.Net.Protocol
 {
     {{~for field in fields ~}}
      public {{field.ctype.cs_define_type}} {{field.cs_style_name}};
@@ -11,7 +11,7 @@ public sealed class {{name}} : Bright.Net.Protocol
     public {{name}}()
     {
     }
-    public {{name}}(Bright.Common.NotNullInitialization _)
+    public {{name}}(Plugin.Bright.Common.NotNullInitialization _)
     {
         {{~for field in fields ~}}
         {{~if field.ctype.need_init~}}

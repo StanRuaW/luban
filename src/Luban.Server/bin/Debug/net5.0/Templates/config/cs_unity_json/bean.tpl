@@ -1,4 +1,4 @@
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 using System.Collections.Generic;
 using SimpleJSON;
 
@@ -18,7 +18,7 @@ namespace {{x.namespace_with_top_module}}
 /// {{x.comment}}
 /// </summary>
 {{~end~}}
-public {{x.cs_class_modifier}} partial class {{name}} : {{if parent_def_type}} {{parent}} {{else}} Bright.Config.BeanBase {{end}}
+public {{x.cs_class_modifier}} partial class {{name}} : {{if parent_def_type}} {{parent}} {{else}} Plugin.Bright.Config.BeanBase {{end}}
 {
     public {{name}}(JSONNode _json) {{if parent_def_type}} : base(_json) {{end}}
     {

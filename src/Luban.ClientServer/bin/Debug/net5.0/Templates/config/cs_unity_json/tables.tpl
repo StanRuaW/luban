@@ -1,4 +1,4 @@
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 using SimpleJSON;
 {{
     name = x.name
@@ -23,7 +23,7 @@ public sealed partial class {{name}}
     {
         var tables = new System.Collections.Generic.Dictionary<string, object>();
         {{~for table in tables ~}}
-        {{table.name}} = new {{table.full_name}}(loader("{{table.output_data_file}}")); 
+        {{table.name}} = new {{table.full_name}}(loader("{{table.output_data_file_escape_dot}}")); 
         tables.Add("{{table.full_name}}", {{table.name}});
         {{~end~}}
 

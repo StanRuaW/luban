@@ -6,7 +6,7 @@
     targ_type = x.targ_type
     tres_type = x.tres_type
 }}
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{x.namespace_with_top_module}}
 {
@@ -16,7 +16,7 @@ namespace {{x.namespace_with_top_module}}
     /// {{x.comment}}
     /// </summary>
 {{~end~}}
-    public sealed class {{name}} : Bright.Net.Codecs.Rpc<{{cs_define_type targ_type}}, {{cs_define_type tres_type}}>
+    public sealed class {{name}} : Plugin.Bright.Net.Codecs.Rpc<{{cs_define_type targ_type}}, {{cs_define_type tres_type}}>
     {
         public {{name}}()
         {

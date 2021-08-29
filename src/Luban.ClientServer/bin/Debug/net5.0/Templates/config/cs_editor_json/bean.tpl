@@ -1,4 +1,4 @@
-using Bright.Serialization;
+using Plugin.Bright.Serialization;
 
 namespace {{namespace}}
 {
@@ -10,7 +10,7 @@ public {{cs_class_modifier}} class {{name}} : {{if parent_def_type}} {{parent}} 
 
     }
 
-    public {{name}}(Bright.Common.NotNullInitialization _) {{if parent_def_type}} : base(_) {{end}}
+    public {{name}}(Plugin.Bright.Common.NotNullInitialization _) {{if parent_def_type}} : base(_) {{end}}
     {
         {{~for field in fields ~}}
         {{~if field.ctype.need_init~}}
