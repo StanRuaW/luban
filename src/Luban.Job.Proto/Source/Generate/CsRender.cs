@@ -67,7 +67,7 @@ namespace Luban.Job.Proto.Generate
                 Protos = protos,
                 Rpcs = rpcs,
             });
-
+             
             return result;
         }
     }
