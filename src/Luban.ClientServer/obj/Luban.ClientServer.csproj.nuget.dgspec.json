@@ -575,10 +575,6 @@
             "ExcelDataReader": {
               "target": "Package",
               "version": "[3.6.0, )"
-            },
-            "Scriban": {
-              "target": "Package",
-              "version": "[2.1.4, )"
             }
           },
           "imports": [

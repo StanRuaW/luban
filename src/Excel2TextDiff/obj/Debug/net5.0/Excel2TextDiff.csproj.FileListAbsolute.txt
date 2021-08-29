@@ -16,3 +16,4 @@ D:\AshFrame\luban\src\Excel2TextDiff\obj\Debug\net5.0\Excel2TextDiff.dll
 D:\AshFrame\luban\src\Excel2TextDiff\obj\Debug\net5.0\ref\Excel2TextDiff.dll
 D:\AshFrame\luban\src\Excel2TextDiff\obj\Debug\net5.0\Excel2TextDiff.pdb
 D:\AshFrame\luban\src\Excel2TextDiff\obj\Debug\net5.0\Excel2TextDiff.genruntimeconfig.cache
+D:\AshFrame\luban\src\Excel2TextDiff\obj\Debug\net5.0\Excel2TextDiff.csproj.AssemblyReference.cache
