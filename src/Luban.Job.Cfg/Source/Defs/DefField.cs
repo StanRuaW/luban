@@ -1,4 +1,6 @@
 using Luban.Common.Utils;
+using Luban.Job.Cfg.DataCreators;
+using Luban.Job.Cfg.Datas;
 using Luban.Job.Cfg.RawDefs;
 using Luban.Job.Cfg.Validators;
 using Luban.Job.Common.Defs;
@@ -67,7 +69,7 @@ namespace Luban.Job.Cfg.Defs
             get
             {
                 var table = Assembly.GetCfgTable(Ref.FirstTable);
-                return $"{table.ValueTType.Apply(CsDefineTypeName.Ins)} {CsRefVarName};";
+                return $"{table.ValueTType.Apply(CsDefineTypeName.Ins)} {CsRefVarName} {{ get; private set; }}";
             }
         }
 
@@ -142,6 +144,16 @@ namespace Luban.Job.Cfg.Defs
 
         public CfgField RawDefine { get; }
 
+        public string GetTextKeyName(string name) => name + TText.L10N_FIELD_SUFFIX;
+
+        public bool GenTextKey => this.CType is TText;
+
+        public bool HasRecursiveText => HasRecursiveRef;
+
+        public string DefaultValue { get; }
+
+        public DType DefalutDtypeValue { get; private set; }
+
         public DefField(DefTypeBase host, CfgField f, int idOffset) : base(host, f, idOffset)
         {
             Index = f.Index;
@@ -153,6 +165,7 @@ namespace Luban.Job.Cfg.Defs
             this.ValueValidators.AddRange(f.ValueValidators.Select(v => ValidatorFactory.Create(v)));
             this.Groups = f.Groups;
             this.RawDefine = f;
+            this.DefaultValue = f.DefaultValue;
         }
 
         public override void Compile()
@@ -173,6 +186,11 @@ namespace Luban.Job.Cfg.Defs
                 v.Compile(this);
             }
 
+            if (!string.IsNullOrWhiteSpace(this.DefaultValue))
+            {
+                this.DefalutDtypeValue = CType.Apply(StringDataCreator.Ins, this.DefaultValue);
+            }
+
             switch (CType)
             {
                 case TArray t:
@@ -181,6 +199,10 @@ namespace Luban.Job.Cfg.Defs
                     {
                         throw new Exception($"container element type:'{e.Bean.FullName}' can't be empty bean");
                     }
+                    if (t.ElementType is TText)
+                    {
+                        throw new Exception($"bean:{HostType.FullName} field:{Name} container element type can't text");
+                    }
                     break;
                 }
                 case TList t:
@@ -188,6 +210,30 @@ namespace Luban.Job.Cfg.Defs
                     if (t.ElementType is TBean e && !e.IsDynamic && e.Bean.HierarchyFields.Count == 0)
                     {
                         throw new Exception($"container element type:'{e.Bean.FullName}' can't be empty bean");
+                    }
+                    if (t.ElementType is TText)
+                    {
+                        throw new Exception($"bean:{HostType.FullName} field:{Name} container element type can't text");
+                    }
+                    break;
+                }
+                case TSet t:
+                {
+                    if (t.ElementType is TText)
+                    {
+                        throw new Exception($"bean:{HostType.FullName} field:{Name} container element type can't text");
+                    }
+                    break;
+                }
+                case TMap t:
+                {
+                    if (t.KeyType is TText)
+                    {
+                        throw new Exception($"bean:{HostType.FullName} field:{Name} container key type can't text");
+                    }
+                    if (t.ValueType is TText)
+                    {
+                        throw new Exception($"bean:{HostType.FullName} field:{Name} container value type can't text");
                     }
                     break;
                 }

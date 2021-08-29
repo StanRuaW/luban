@@ -1,4 +1,5 @@
 using Luban.Job.Common.RawDefs;
+using Luban.Job.Common.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,27 @@ namespace Luban.Job.Common.Defs
             public int IntValue { get; set; }
 
             public string Comment { get; init; }
+
+            public Dictionary<string, string> Tags { get; init; }
+
+            public bool HasTag(string attrName)
+            {
+                return Tags != null && Tags.ContainsKey(attrName);
+            }
+
+            public string GetTag(string attrName)
+            {
+                return Tags != null && Tags.TryGetValue(attrName, out var value) ? value : null;
+            }
         }
 
-        public bool IsFlags { get; set; }
+        public bool IsFlags { get; }
 
-        public bool IsUniqueItemId { get; set; }
+        public bool IsUniqueItemId { get; }
 
-        public List<Item> Items { get; set; } = new List<Item>();
+        public List<Item> Items { get; } = new List<Item>();
 
-        private readonly Dictionary<string, int> _nameOrAlias2Value = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> _nameOrAlias2Value = new();
 
         public bool TryValueByNameOrAlias(string name, out int value)
         {
@@ -71,6 +84,7 @@ namespace Luban.Job.Common.Defs
             IsFlags = e.IsFlags;
             IsUniqueItemId = e.IsUniqueItemId;
             Comment = e.Comment;
+            Tags = DefUtil.ParseAttrs(e.Tags);
 
             foreach (var item in e.Items)
             {
@@ -81,6 +95,7 @@ namespace Luban.Job.Common.Defs
                     Alias = item.Alias,
                     Value = item.Value,
                     Comment = string.IsNullOrWhiteSpace(item.Comment) ? item.Alias : item.Comment,
+                    Tags = DefUtil.ParseAttrs(item.Tags),
                 });
             }
         }

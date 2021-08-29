@@ -6,11 +6,16 @@ namespace Luban.Job.Cfg.Datas
 {
     public class DText : DType
     {
+        public const string KEY_NAME = "key";
+        public const string TEXT_NAME = "text";
+
         public string Key { get; }
 
         private readonly string _rawValue;
 
         public string RawValue => _rawValue;
+
+        public override string TypeName => "text";
 
         public DText(string key, string x)
         {
