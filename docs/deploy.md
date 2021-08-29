@@ -1,5 +1,5 @@
-[//]: # (Author: bug)
-[//]: # (Date: 2020-11-23 00:21:21)
+[//]: # "Author: bug"
+[//]: # "Date: 2020-11-23 00:21:21"
 
 # 服务端布署
 
@@ -11,7 +11,7 @@
     docker run --name luban-server -d -p 8899:8899 hugebug4ever/luban:latest 
 ```
 
-## Windows 下命令行布署
+## Windows 下命令行布署 
 - 下载 [release](https://github.com/focus-creative-games/luban/releases) 版本
 - 解压 Luban.Server.zip
 - 执行下面的命令即可
