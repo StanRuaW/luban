@@ -1,5 +1,6 @@
 using Luban.Common.Utils;
 using Luban.Server.Common;
+using System.Collections.Generic;
 
 namespace Luban.Job.Common.Defs
 {
@@ -44,6 +45,18 @@ namespace Luban.Job.Common.Defs
         public string PyFullName => TypeUtil.MakePyFullName(Namespace, Name);
 
         public string Comment { get; protected set; }
+
+        public Dictionary<string, string> Tags { get; protected set; }
+
+        public bool HasTag(string attrName)
+        {
+            return Tags != null && Tags.ContainsKey(attrName);
+        }
+
+        public string GetTag(string attrName)
+        {
+            return Tags != null && Tags.TryGetValue(attrName, out var value) ? value : null;
+        }
 
         public virtual void PreCompile() { }
 

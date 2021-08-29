@@ -162,5 +162,15 @@ namespace Luban.Job.Common.Defs
         {
             return type.Apply(LuaConstValueVisitor.Ins, value);
         }
+
+        public static bool HasTag(dynamic obj, string attrName)
+        {
+            return obj.HasTag(attrName);
+        }
+
+        public static string GetTag(dynamic obj, string attrName)
+        {
+            return obj.GetTag(attrName);
+        }
     }
 }

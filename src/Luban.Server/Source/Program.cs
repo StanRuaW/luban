@@ -2,6 +2,7 @@ using Bright.Common;
 using CommandLine;
 using Luban.Common.Protos;
 using Luban.Common.Utils;
+using Luban.Job.Common.Utils;
 using Luban.Server.Common;
 using System;
 using System.IO;
@@ -19,6 +20,9 @@ namespace Luban.Server
 
             [Option('l', "loglevel", Required = false, HelpText = "log level. default INFO. avaliable value: TRACE,DEBUG,INFO,WARN,ERROR,FATAL,OFF")]
             public string LogLevel { get; set; } = "INFO";
+
+            [Option('t', "template_search_path", Required = false, HelpText = "additional template search path")]
+            public string TemplateSearchPath { get; set; }
         }
 
         private static CommandLineOptions ParseOptions(String[] args)
@@ -45,11 +49,17 @@ namespace Luban.Server
 
             var options = ParseOptions(args);
 
+            if (!string.IsNullOrEmpty(options.TemplateSearchPath))
+            {
+                StringTemplateUtil.AddTemplateSearchPath(options.TemplateSearchPath);
+            }
+            StringTemplateUtil.AddTemplateSearchPath(FileUtil.GetPathRelateApplicationDirectory("Templates"));
+
             Luban.Common.Utils.LogUtil.InitSimpleNLogConfigure(NLog.LogLevel.FromString(options.LogLevel));
 
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
-            GenServer.Ins.Start(options.Port, ProtocolStub.Factories);
+            GenServer.Ins.Start(false, options.Port, ProtocolStub.Factories);
 
             GenServer.Ins.RegisterJob("cfg", new Luban.Job.Cfg.JobController());
             GenServer.Ins.RegisterJob("proto", new Luban.Job.Proto.JobController());
@@ -58,6 +68,8 @@ namespace Luban.Server
             int processorCount = System.Environment.ProcessorCount;
             ThreadPool.SetMinThreads(Math.Max(4, processorCount), 5);
             ThreadPool.SetMaxThreads(Math.Max(16, processorCount * 4), 10);
+
+            Console.WriteLine("== running ==");
         }
 
     }

@@ -15,4 +15,7 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)scriban\4.0.1\build\Scriban.props" Condition="Exists('$(NuGetPackageRoot)scriban\4.0.1\build\Scriban.props')" />
+  </ImportGroup>
 </Project>

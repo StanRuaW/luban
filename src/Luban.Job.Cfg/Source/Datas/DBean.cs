@@ -12,6 +12,8 @@ namespace Luban.Job.Cfg.Datas
 
         public List<DType> Fields { get; }
 
+        public override string TypeName => "bean";
+
         public DBean(DefBean defType, DefBean implType, List<DType> fields)
         {
             this.Type = defType;

@@ -1,6 +1,7 @@
 using Luban.Common.Utils;
 using Luban.Job.Common.RawDefs;
 using Luban.Job.Common.Types;
+using Luban.Job.Common.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -71,6 +72,20 @@ namespace Luban.Job.Common.Defs
 
         public string Comment { get; }
 
+        public Dictionary<string, string> Tags { get; }
+
+        public bool IgnoreNameValidation { get; set; }
+
+        public bool HasTag(string attrName)
+        {
+            return Tags != null && Tags.ContainsKey(attrName);
+        }
+
+        public string GetTag(string attrName)
+        {
+            return Tags != null && Tags.TryGetValue(attrName, out var value) ? value : null;
+        }
+
         public DefFieldBase(DefTypeBase host, Field f, int idOffset)
         {
             HostType = host;
@@ -78,6 +93,8 @@ namespace Luban.Job.Common.Defs
             Name = f.Name;
             Type = f.Type;
             Comment = f.Comment;
+            Tags = DefUtil.ParseAttrs(f.Tags);
+            IgnoreNameValidation = f.IgnoreNameValidation;
         }
 
         public virtual void Compile()
@@ -87,7 +104,7 @@ namespace Luban.Job.Common.Defs
             {
                 throw new Exception($"type:'{HostType.FullName}' field:'{Name}' id:{Id} 超出范围");
             }
-            if (!TypeUtil.IsValidName(Name))
+            if (!IgnoreNameValidation && !TypeUtil.IsValidName(Name))
             {
                 throw new Exception($"type:'{HostType.FullName}' filed name:'{Name}' is reserved");
             }
