@@ -13,13 +13,14 @@
     </bean>
   </module>
   ```
-- 配置:   
+- 配置:    
   ![如图](images/adv/def_01.png)
 
-## float 类型
+## float 类型 
 
 - 新增一个 float 类型字段，掉落概率 drop_prob.
 - [定义](images/adv/def_04.png):   
+  
   ```xml
   <module name = "item">
     <bean name = "Item">
