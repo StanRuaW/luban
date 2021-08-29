@@ -13,7 +13,7 @@
     </bean>
   </module>
   ```
-- 配置:  
+- 配置:   
   ![如图](images/adv/def_01.png)
 
 ## float 类型
