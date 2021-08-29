@@ -53,7 +53,7 @@ namespace Luban.Job.Proto.Generate
         {
             var template = StringTemplateUtil.GetTemplate("proto/cs/rpc");
             var result = template.RenderCode(r);
-             
+
             return result;
         }
 
