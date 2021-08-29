@@ -1,7 +1,7 @@
 [//]: # "Author: bug"
 [//]: # "Date: 2020-11-01 15:40:11"
 
-## bool 类型
+## bool 类型 
 
 - 新增 一个字段 batch_useable，表示能否批量使用
 - 用 true 或 false 表示 bool 值，只需要小写后是这两个值即可，比如 true,True,True 都是合法的值。excel 会自动将输入的值大写化。
@@ -100,7 +100,7 @@ text的key和text字段都是string类型，因此在连续单元格或者sep产
     - yyyy-mm-dd hh 如 2001-09-05 07
     - yyyy-mm-dd 如 2003-04-05
   - 以 excel内置的时间格式填写
-    
+  
 - 为 Item 新增一个 失效时间字段 expire_time 。  
 - [定义](images/adv/def_38.png)  
   ``` xml
@@ -251,7 +251,7 @@ text的key和text字段都是string类型，因此在连续单元格或者sep产
       <var name="desc", type="string">
       <var name="attr", type="float">
    </bean>
-
+  
    <bean name="Item">
       <var name="level_attrs" type="list,ItemLevelAttr" />
    </bean>
